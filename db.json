@@ -1,0 +1,55 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Room 1",
+      "image": "https://nomadsworld.com/wp-content/uploads/2018/11/nomads-st-kilda-room.jpg",
+      "description": "Mountain View",
+      "paymenttoken": "asds",
+      "input": {
+        "paymenttoken": "sfd"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Room 2",
+      "image": "https://nomadsworld.com/wp-content/uploads/2018/11/nomads-st-kilda-dorm-room.jpg",
+      "description": "Single Room",
+      "paymenttoken": "asfa"
+    },
+    {
+      "id": 3,
+      "name": "Room 3",
+      "image": "https://image.shutterstock.com/image-photo/tbilisi-georgia-oct-9-window-260nw-1164605263.jpg",
+      "description": "Double Room",
+      "paymenttoken": "asfa",
+      "input": {
+        "paymenttoken": "IDASI"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Room 4",
+      "image": "https://thumbs.dreamstime.com/b/bunk-beds-hostel-room-54783462.jpg",
+      "description": "Triple Room",
+      "paymenttoken": "asds",
+      "input": {
+        "paymenttoken": "sadfa"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Room 5",
+      "image": "https://www.cambridge.edu.in/wp-content/uploads/2020/12/CIT-139-1024x678.jpg",
+      "description": "Quad Room",
+      "paymenttoken": "asds"
+    },
+    {
+      "id": 6,
+      "name": "Room 6",
+      "image": "https://www.abraham.travel/jerusalem/wp-content/uploads//2019/06/10bed2-2.jpg",
+      "description": "",
+      "paymenttoken": "asds"
+    }
+  ]
+}
