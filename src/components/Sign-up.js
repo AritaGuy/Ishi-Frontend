@@ -1,4 +1,9 @@
-function SignUp({ onLogin }) {
+import React, {useState} from "react";
+import { NavLink } from "react-router-dom";
+import "../index.css"
+
+
+function SignUp({setUser}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -15,11 +20,13 @@ function SignUp({ onLogin }) {
           password,
           password_confirmation: passwordConfirmation,
         }),
-      })
-        .then((r) => r.json())
-        .then(onLogin);
+      }).then((r) => {
+        if (r.ok) {
+          r.json().then((user) => console.log(user));
+        }
+      });
     }
-  
+    console.log([username, password, passwordConfirmation])
     return (
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
@@ -43,7 +50,12 @@ function SignUp({ onLogin }) {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        {/* <NavLink to="/home">  */}
+        <input name="submit" type="submit" value="Submit" />
+        {/* </NavLink>  */}
+        
       </form>
     );
   }
+
+  export default SignUp
