@@ -9,7 +9,7 @@ function Confirm(){
     useEffect(()=> {
         fetch(`${roomDB}/${params.roomId}`)
        .then((r)=>r.json())
-       .then((data)=>setRoom(data))}, [])
+       .then((data)=>setRoom(data))}, [params.roomId])
     return(
     <div id='confirm'>
       <div className="alert alert-success" id="alert-message" role="alert">

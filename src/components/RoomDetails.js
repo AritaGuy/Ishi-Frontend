@@ -14,7 +14,7 @@ function RoomDetails({user}){
   useEffect(()=> {
    fetch(`${roomDB}/${params.roomId}`)
   .then((r)=>r.json())
-  .then((data)=>setRoom(data))}, [])
+  .then((data)=>setRoom(data))}, [params.roomId])
   
   
   function handleSubmit(e){
