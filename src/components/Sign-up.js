@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { NavLink } from "react-router-dom";
+
 import "../index.css"
 
 
@@ -22,7 +22,7 @@ function SignUp({setUser}) {
         }),
       }).then((r) => {
         if (r.ok) {
-          r.json().then((user) => console.log(user));
+          r.json().then((user) => setUser(user));
         }
       });
     }

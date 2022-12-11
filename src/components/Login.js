@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { NavLink, Link, Route, Routes } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import "../index.css"
-import Home from "./Home";
+
 
 
 function Login({setUser}){

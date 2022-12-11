@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "../index.css"
-import {useParams, Link, Routes, Route, useNavigate} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom"
 
  
 function RoomDetails({user}){
@@ -36,6 +36,7 @@ function RoomDetails({user}){
     });
     
   }
+  console.log(errors)
  return(
     <div id="selected-room">
     <img id="room-image" src={room.image_url} alt="selected room"/>
