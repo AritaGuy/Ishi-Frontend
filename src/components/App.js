@@ -7,28 +7,31 @@ import RoomDetails from "./RoomDetails";
 import Rooms from "./Rooms";
 import PaymentToken from "./PaymentToken"
 import Confirm from "./Confirm"
+import SignUp from "./Sign-up";
 
 function App() {
-  const {currentUser, setCurrentUser} = useState('')
-  useEffect(()=>{
-    fetch('/auth')
-    .then(res => {
-      if(res.ok){
-        res.json().then(user=>setCurrentUser(user))
-      }
-    })
-  }, [])
+  const [user, setUser] = useState([]);
 
-  if(!currentUser) return <Login setCurrentUser={setCurrentUser} />
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+  console.log(user)
   return <div>
-  <NavBar /> 
+   <NavBar user={user} setUser={setUser}/>
   <Routes>
-   <Route path="/" element = {<Home />} />
-   <Route path="/login" element = {<Login />} />
+   <Route path="/" element = {<Login setUser={setUser}/>} />
+   <Route path="/sign-up" element={<SignUp setUser={setUser}/>}/>
+   <Route path="/home" element = {<Home user={user}/>}/>
    <Route path="/rooms/*" element = {<Rooms />} />
-   <Route path="/roomdetails/:roomId" element = {<RoomDetails />} />
+   <Route path="/roomdetails/:roomId" element = {<RoomDetails user={user}/>} />
    <Route path="/paymentoken" element = {<PaymentToken />} />
-   <Route path="/congratulations/:roomId" element = {<Confirm />} />
+   <Route path="/congratulations" element = {<Confirm />} />
+   
   </Routes>
   
   </div>;
