@@ -1,21 +1,43 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, {useState} from "react";
+import { NavLink, Link, Route, Routes } from "react-router-dom";
 import "../index.css"
+import Home from "./Home";
 
-function Login(){
+
+function Login({setUser}){
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password
+      }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }
+
     return (
       <div className="login-form">
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
       {/* <!-- Email input --> */}
       <div className="form-outline mb-4">
-        <label className="form-label" for="form2Example1">Email address</label>
-        <input type="email" id="form2Example1" className="form-control" />
+        <label className="form-label" for="form2Example1">Username</label>
+        <input type="text" id="form2Example1" className="form-control" value={username} onChange={(e)=>setUsername(e.target.value)}/>
       </div>
 {/*     
       <!-- Password input --> */}
       <div className="form-outline mb-4">
       <label className="form-label" for="form2Example2">Password</label>
-        <input type="password" id="form2Example2" className="form-control" />
+        <input type="password" id="form2Example2" className="form-control" value={password} onChange={(e)=>setPassword(e.target.value)}/>
       </div>
     
       {/* <!-- 2 column grid layout for inline styling --> */}
@@ -30,14 +52,17 @@ function Login(){
     
         <div className="col">
           {/* <!-- Simple link --> */}
-          <a href="#!">Forgot password?</a>
+          <NavLink to= "/sign-up">
+          <a href="#!">Sign Up</a>
+          </NavLink>
         </div>
       </div>
     
       {/* <!-- Submit button --> */}
-      <NavLink to="/rooms">
-        <button type="button" className="btn btn-primary btn-block mb-4">Sign in</button>
-      </NavLink>
+      
+        <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button> 
+        
+      
       
     
       

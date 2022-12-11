@@ -18,7 +18,7 @@ function RoomList({rooms}){
       {rooms.map((hostel)=>{
         return <div id="card" className = "grow" key={hostel.id}>
           
-        <img src={hostel.image} className="card-img-top" alt="..." />
+        <img src={hostel.image_url} className="card-img-top" alt="..." />
         <div className="card-body">
         <h5 className="card-title">{hostel.name}</h5>
         <p className="card-text">{hostel.description}</p>

@@ -2,7 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../index.css"
 
-function NavBar(){
+function NavBar({user, setUser}){
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
@@ -21,7 +28,12 @@ function NavBar(){
               </li>
             </ul>
             <span className="nav-item">
-              <NavLink to='/'>Log In</NavLink>
+              {/* <h5>{user.username}</h5> */}
+              <NavLink to='/'>
+                <div onClick={handleLogoutClick}>
+                Log out
+                </div>
+              </NavLink>
             </span>
           </div>
         </div>

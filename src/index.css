@@ -89,7 +89,7 @@ code {
   margin-top: 200px;
 }
 
-#InputPassword1{
+#payment_token{
   width: 30%;
   margin-left: 450px;
 }
@@ -136,4 +136,10 @@ code {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.nav-item{
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,24 +1,22 @@
 import React, {useEffect, useState} from "react";
 import "../index.css"
-import {useParams, Link, Routes, Route} from "react-router-dom"
+import {useParams, Link, Routes, Route, useNavigate} from "react-router-dom"
 
  
-function RoomDetails(){
-  const roomDB = " http://localhost:5000/rooms"
+function RoomDetails({user}){
+  const roomDB = "/rooms"
   const [room, setRoom]=useState({})
-  let [input, setInput]=useState({})
+  let [payment_token, setpayment_token]=useState("")
   let params = useParams()
-  console.log(params)
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
+  
   useEffect(()=> {
    fetch(`${roomDB}/${params.roomId}`)
   .then((r)=>r.json())
   .then((data)=>setRoom(data))}, [])
   
-  console.log(room)
-  function handleChange(e){
-    setInput({"paymenttoken": e.target.value})
-    console.log(input)
-  }
+  
   function handleSubmit(e){
     e.preventDefault()
     fetch(`${roomDB}/${params.roomId}`,{
@@ -26,27 +24,35 @@ function RoomDetails(){
      headers: {
       'Content-Type':'application/JSON'
      },
-     body : JSON.stringify(input) 
+     body: JSON.stringify({payment_token}) 
     })
-    alert(`Congratulations you have successfully booked ${room.description}`)
+    .then((r) => {
+ 
+      if (r.ok) {
+        navigate("/congratulations");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
     
   }
  return(
     <div id="selected-room">
-    <img id="room-image" src={room.image} alt="selected room"/>
+    <img id="room-image" src={room.image_url} alt="selected room"/>
     <p id="desc">{room.description}</p>
     <form onSubmit={handleSubmit}>
     <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Payment Token</label>
-    <input type="text" class="form-control" id="InputPassword1" onChange={handleChange}/>
+    <input 
+    type="text" 
+    class="form-control" 
+    id="payment_token" 
+    value={payment_token} 
+    onChange={(e)=>setpayment_token(e.target.value)}/>
     </div>
-     <Link to={`/congratulations/${room.id}`}><button type="submit" class="btn btn-primary" onClick={
-      ()=>{
-        <Routes>
-        <Route path={`/congratulations`} />
-        </Routes>
-      }
-     }>Submit</button></Link>
+     {/* <Link to={`/congratulations/${room.id}`}>  */}
+      <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Submit</button>
+      {/* </Link>  */}
     </form>    
     </div>
   )
