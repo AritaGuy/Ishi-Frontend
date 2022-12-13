@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "../index.css"
-import {useParams, useNavigate} from "react-router-dom"
+import {useParams, useNavigate, json} from "react-router-dom"
 
  
 function RoomDetails({user}){
@@ -29,18 +29,20 @@ function RoomDetails({user}){
     .then((r) => {
  
       if (r.ok) {
-        navigate("/congratulations");
+        navigate('/congratulations')
+        sessionStorage.setItem('room',JSON.stringify(room))
+        console.log(room)
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
     
   }
-  console.log(errors)
+  // console.log(room.payment_token)
  return(
     <div id="selected-room">
-    <img id="room-image" src={room.image_url} alt="selected room"/>
-    <p id="desc">{room.description}</p>
+    <img id="room-image" src={room?.image_url} alt="selected room"/>
+    <p id="desc">{room?.description}</p>
     <form onSubmit={handleSubmit}>
     <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Payment Token</label>

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import {useNavigate} from "react-router-dom";
 import "../index.css"
 
 
@@ -7,6 +7,7 @@ function SignUp({setUser}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const navigate = useNavigate()
   
     function handleSubmit(e) {
       e.preventDefault();
@@ -22,7 +23,10 @@ function SignUp({setUser}) {
         }),
       }).then((r) => {
         if (r.ok) {
-          r.json().then((user) => setUser(user));
+          r.json().then((user) => {
+            setUser(user)
+            navigate("/home")
+          });
         }
       });
     }

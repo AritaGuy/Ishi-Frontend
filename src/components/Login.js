@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import "../index.css"
 
 
@@ -7,6 +7,7 @@ import "../index.css"
 function Login({setUser}){
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/login", {
@@ -20,7 +21,9 @@ function Login({setUser}){
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user)
+        navigate("/home")});
       }
     });
   }
@@ -59,8 +62,10 @@ function Login({setUser}){
       </div>
     
       {/* <!-- Submit button --> */}
-      
-        <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button> 
+      {/* <NavLink to="home"> */}
+         <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button> 
+      {/* </NavLink> */}
+        
         
       
       
