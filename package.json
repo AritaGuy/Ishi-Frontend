@@ -19,7 +19,7 @@
     "deploy": "gh-pages -d docs/build",
     "start": "PORT=4000 react-scripts start",
     "build": "react-scripts build && mv build docs",
-    "ndeploy":"netlify deploy --prod",
+    "ndeploy":"netlify deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "json-server --watch db.json --port 5000"
