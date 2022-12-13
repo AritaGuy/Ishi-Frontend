@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import "../index.css"
-import {useParams} from "react-router-dom"
+// import {useParams} from "react-router-dom"
 
 function Confirm(){
     const myRoom = JSON.parse(sessionStorage.getItem("room"))
-    const roomDB = "/rooms"
+    // const roomDB = "/rooms"
     // const [room, setRoom]=useState({})
-    let params = useParams()
+    // let params = useParams()
     // useEffect(()=> {
     //     fetch(`${roomDB}/${params.roomId}`)
     //    .then((r)=>r.json())
